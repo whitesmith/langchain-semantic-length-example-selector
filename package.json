@@ -21,6 +21,9 @@
     "type": "git",
     "url": "git+https://github.com/whitesmith/langchain-semantic-similarity-length-based-example-selector"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "files": [
     "lib/**/*"
   ],
