@@ -1,5 +1,5 @@
 {
-  "name": "whitesmith-langchain-semantic-similarity-length-based-example-selector",
+  "name": "@whitesmith/langchain-semantic-similarity-length-based-example-selector",
   "version": "1.0.0",
   "description": "LangChain SemanticSimilarityLengthBasedExampleSelector",
   "main": "lib/index.js",
