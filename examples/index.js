@@ -4,8 +4,8 @@ const { PromptTemplate, FewShotPromptTemplate } = require("langchain/prompts");
 const { ChatOpenAI } = require("langchain/chat_models/openai");
 
 // Uncomment when using outside of this repo
-// const { SemanticSimilarityLengthBasedExampleSelector, getLengthBased } = require('@whitesmith/langchain-semantic-similarity-length-based-example-selector');
-const { SemanticSimilarityLengthBasedExampleSelector, getLengthBased } = require('../lib/index.js');
+// const { SemanticLengthExampleSelector, getLengthBased } = require('@whitesmith/langchain-semantic-length-example-selector');
+const { SemanticLengthExampleSelector, getLengthBased } = require('../lib/index.js');
 
 /*
  * CONSTANTS
@@ -73,7 +73,7 @@ Here are the notes from ...:
 
   const examplePrompt = PromptTemplate.fromTemplate(`<post>\n{content}\n</post>`);
 
-  const exampleSelector = new SemanticSimilarityLengthBasedExampleSelector({
+  const exampleSelector = new SemanticLengthExampleSelector({
     vectorStore: vectorStore,
     k: 6, // return up to 6 most similar examples
     inputKeys: ["content"],

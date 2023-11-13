@@ -1,5 +1,5 @@
 import { FakeEmbeddings } from "langchain/embeddings/fake";
-import { SemanticSimilarityLengthBasedExampleSelector, getLengthBased } from "../index";
+import { SemanticLengthExampleSelector, getLengthBased } from "../index";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import {
   PromptTemplate,
@@ -12,7 +12,7 @@ const examples = [
   { query: "foo", output: "bar" },
 ];
 
-test("Test using SemanticSimilarityExampleSelector", async () => {
+test("Test using SemanticLengthExampleSelector", async () => {
   const vectorStore = await MemoryVectorStore.fromTexts(
     examples.map(({ query, output }) => `<example>\n<user_input>\n${query}\n</user_input>\n<output>\n${output}\n</output>\n</example>`),
     examples,
@@ -32,7 +32,7 @@ test("Test using SemanticSimilarityExampleSelector", async () => {
   const promptPrefix = "Answer the user's question, using the below examples as reference:";
   const promptSuffix = "User question: {query}";
 
-  const exampleSelector = new SemanticSimilarityLengthBasedExampleSelector({
+  const exampleSelector = new SemanticLengthExampleSelector({
     vectorStore,
     k: 6, // return up to 6 most similar examples
     inputKeys: ["query"],

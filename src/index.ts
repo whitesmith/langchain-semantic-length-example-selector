@@ -13,16 +13,16 @@ export function getLengthBased(text: string): number {
   return text.split(/\n| /).length;
 }
 
-export type SemanticSimilarityLengthBasedExampleSelectorInput = SemanticSimilarityExampleSelectorInput & LengthBasedExampleSelectorInput;
+export type SemanticLengthExampleSelectorInput = SemanticSimilarityExampleSelectorInput & LengthBasedExampleSelectorInput;
 
-export class SemanticSimilarityLengthBasedExampleSelector extends SemanticSimilarityExampleSelector {
+export class SemanticLengthExampleSelector extends SemanticSimilarityExampleSelector {
   examplePrompt!: PromptTemplate;
 
   getTextLength: (text: string) => number = getLengthBased;
 
   maxLength = 2048;
 
-  constructor(data: SemanticSimilarityLengthBasedExampleSelectorInput) {
+  constructor(data: SemanticLengthExampleSelectorInput) {
     super(data);
     this.examplePrompt = data.examplePrompt;
     this.maxLength = data.maxLength ?? 2048;

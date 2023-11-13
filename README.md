@@ -1,16 +1,16 @@
-# 🦜️🔗 LangChain.js Semantic Similarity Length Based Example Selector
-When you want to provide examples as context for a LLM you can use LangChain.js ["Select by length"](https://js.langchain.com/docs/modules/model_io/prompts/example_selectors/length_based) or ["Select by similarity"](https://js.langchain.com/docs/modules/model_io/prompts/example_selectors/similarity) Prompt Selectors. However what if you need to select by similarity while ensuring a max length? This package solves that issue by combining the `LengthBasedExampleSelector` and the `SemanticSimilarityExampleSelector` into the `SemanticSimilarityLengthBasedExampleSelector`.
+# 🦜️🔗 LangChain.js Semantic Length Example Selector
+When you want to provide examples as context for a LLM you can use LangChain.js ["Select by length"](https://js.langchain.com/docs/modules/model_io/prompts/example_selectors/length_based) or ["Select by similarity"](https://js.langchain.com/docs/modules/model_io/prompts/example_selectors/similarity) Prompt Selectors. However what if you need to select by similarity while ensuring a max length? This package solves that issue by combining the `LengthBasedExampleSelector` and the `SemanticSimilarityExampleSelector` into the `SemanticLengthExampleSelector`.
 
 ### Install package
 
 ```bash
-yarn add whitesmith/langchain-semantic-similarity-length-based-example-selector
+yarn add whitesmith/langchain-semantic-length-example-selector
 ```
 
 ### Usage
 
 ```js
-import { SemanticSimilarityLengthBasedExampleSelector, getLengthBased } from '@whitesmith/langchain-semantic-similarity-length-based-example-selector';
+import { SemanticLengthExampleSelector, getLengthBased } from '@whitesmith/langchain-semantic-length-example-selector';
 
 // ...
 
@@ -23,7 +23,7 @@ const vectorStore = new MemoryVectorStore(embeddings);
 
 // ...
 
-const exampleSelector = new SemanticSimilarityLengthBasedExampleSelector({
+const exampleSelector = new SemanticLengthExampleSelector({
   vectorStore: vectorStore,
   k: 6, // return up to 6 most similar examples
   inputKeys: ["content"],
@@ -57,7 +57,7 @@ const result = await chain.invoke({ content: exampleContent });
 console.log(result.content);
 ```
 
-For a full example check the file in `/examples/index.js` ([link](https://github.com/whitesmith/langchain-semantic-similarity-length-based-example-selector/blob/main/examples/index.js))
+For a full example check the file in `/examples/index.js` ([link](https://github.com/whitesmith/langchain-semantic-length-example-selector/blob/main/examples/index.js))
 
 <br/>
 
