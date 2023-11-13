@@ -57,6 +57,8 @@ const result = await chain.invoke({ content: exampleContent });
 console.log(result.content);
 ```
 
+For a full example check the file in `/examples/index.js`
+
 ### Development
 
 Run
