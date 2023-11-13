@@ -1,5 +1,5 @@
-# LangChain SemanticSimilarityLengthBasedExampleSelector
-LangChain.js offers a SemanticSimilarityExampleSelector and a LengthBasedExampleSelector, however what if you need both? This package solves that issue by combining both selectors into the SemanticSimilarityLengthBasedExampleSelector.
+# 🦜️🔗 LangChain.js Semantic Similarity Length Based Example Selector
+When you want to provide examples as context for a LLM you can use LangChain.js ["Select by length"](https://js.langchain.com/docs/modules/model_io/prompts/example_selectors/length_based) or ["Select by similarity"](https://js.langchain.com/docs/modules/model_io/prompts/example_selectors/similarity) Prompt Selectors. However what if you need to select by similarity while ensuring a max length? This package solves that issue by combining the `LengthBasedExampleSelector` and the `SemanticSimilarityExampleSelector` into the `SemanticSimilarityLengthBasedExampleSelector`.
 
 ### Install package
 
@@ -57,7 +57,13 @@ const result = await chain.invoke({ content: exampleContent });
 console.log(result.content);
 ```
 
-For a full example check the file in `/examples/index.js`
+For a full example check the file in `/examples/index.js` ([link](https://github.com/whitesmith/langchain-semantic-similarity-length-based-example-selector/blob/main/examples/index.js))
+
+<br/>
+
+---
+
+<br/>
 
 ### Development
 
