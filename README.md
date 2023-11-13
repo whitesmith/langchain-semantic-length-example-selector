@@ -1,9 +1,61 @@
 # LangChain SemanticSimilarityLengthBasedExampleSelector
 LangChain.js offers a SemanticSimilarityExampleSelector and a LengthBasedExampleSelector, however what if you need both? This package solves that issue by combining both selectors into the SemanticSimilarityLengthBasedExampleSelector.
 
-### Getting Started
+### Install package
 
-Soon...
+```bash
+yarn add whitesmith/langchain-semantic-similarity-length-based-example-selector
+```
+
+### Usage
+
+```js
+import { SemanticSimilarityLengthBasedExampleSelector, getLengthBased } from '@whitesmith/langchain-semantic-similarity-length-based-example-selector';
+
+// ...
+
+const promptPrefix = "Generate ... using the below examples as reference:";
+const promptSuffix = "You are ... ";
+const examplePrompt = PromptTemplate.fromTemplate("<example>{content}</example>");
+
+const embeddings = new OpenAIEmbeddings();
+const vectorStore = new MemoryVectorStore(embeddings);
+
+// ...
+
+const exampleSelector = new SemanticSimilarityLengthBasedExampleSelector({
+  vectorStore: vectorStore,
+  k: 6, // return up to 6 most similar examples
+  inputKeys: ["content"],
+  examplePrompt: examplePrompt,
+  // prompt max length in words
+  maxLength: 50 - getLengthBased(promptPrefix) - getLengthBased(promptSuffix)
+});
+
+const dynamicPrompt = new FewShotPromptTemplate({
+  exampleSelector,
+  examplePrompt,
+  prefix: promptPrefix,
+  suffix: promptSuffix,
+  inputVariables: ["content"],
+});
+
+// ...
+
+// For testing purposes
+const formattedValue = await dynamicPrompt.format({
+  content: "...",
+});
+console.log(formattedValue);
+
+// ...
+
+const model = new ChatOpenAI(...);
+const chain = dynamicPrompt.pipe(model);
+
+const result = await chain.invoke({ content: exampleContent });
+console.log(result.content);
+```
 
 ### Development
 
